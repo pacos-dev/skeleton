@@ -1,0 +1,26 @@
+.no-select {
+    user-select: none;
+}
+.info {
+    display: flex;
+    border-radius: 5px;
+    padding: 15px;
+    flex-shrink: inherit;
+    width: 100%;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+    background: var(--lumo-base-color) linear-gradient(var(--lumo-contrast-5pct), var(--lumo-contrast-5pct));
+}
+
+.info vaadin-icon {
+    margin-right: 10px;
+    min-width: 20px;
+    min-height: 20px;
+    height: 20px;
+    width: 20px;
+}
+
+.info vaadin-icon {
+    color: var(--app-warning);
+}
