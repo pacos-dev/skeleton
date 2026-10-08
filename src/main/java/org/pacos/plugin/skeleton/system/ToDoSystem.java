@@ -6,7 +6,10 @@ import org.pacos.plugin.skeleton.backend.ToDoProxy;
 import org.pacos.plugin.skeleton.view.PanelTodo;
 
 /**
- * This class is used to manage all events inside the module.
+ * Coordinates plugin-local events for one ToDo window instance.
+ *
+ * The object deliberately keeps the window and proxy together so UI event handlers can communicate without exposing
+ * the implementation details of the underlying service layer.
  */
 public class ToDoSystem extends SystemEvent<ToDoEvent> {
 

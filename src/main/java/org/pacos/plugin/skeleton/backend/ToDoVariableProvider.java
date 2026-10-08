@@ -13,8 +13,11 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * This class represents variable definition provider for todoModule.
- * The interface VariableProvider is automatically detected and attached to pacos variable system
+ * Example variable provider for a plugin-owned scope.
+ *
+ * PacOS detects {@link VariableProvider} beans automatically and registers them with the platform variable manager.
+ * This example uses static data only to keep the skeleton small; production providers should normally resolve values
+ * from plugin services or persistence instead of mutable static state.
  */
 @Component
 public class ToDoVariableProvider implements VariableProvider {
