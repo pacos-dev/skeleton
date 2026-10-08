@@ -4,7 +4,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Defines package to scan by spring context during launch
+ * Selects the skeleton packages that belong to the plugin Spring context.
+ *
+ * PacOS discovers configuration from the plugin's {@code .config} package. Keeping component scanning
+ * explicit prevents unrelated packages from being pulled into the plugin context accidentally.
  */
 @Configuration
 @ComponentScan(basePackages = {

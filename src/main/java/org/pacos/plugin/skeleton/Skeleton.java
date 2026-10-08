@@ -11,7 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
- * Use this class to run skeleton module inside pacos system.
+ * Local application entry point for running the PacOS platform with the skeleton module.
+ *
+ * The class is a development launcher, not a plugin entry point used by an existing PacOS instance.
+ * When this application is started, the skeleton is loaded as part of the same runnable environment.
  */
 @SpringBootApplication(scanBasePackages = {"org.pacos.core.config", "org.pacos.plugin.*.config"})
 @EnableVaadin(value = {"org.pacos.core", "org.pacos.base", "org.pacos.plugin.*"})

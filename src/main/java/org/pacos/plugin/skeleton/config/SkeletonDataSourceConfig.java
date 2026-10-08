@@ -22,6 +22,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Configures the skeleton's independent persistence infrastructure.
+ *
+ * The plugin owns its datasource, JPA entity manager and transaction manager so that its database lifecycle
+ * stays isolated from the PacOS core database.
+ */
 @Configuration
 @EnableJpaRepositories(basePackages = "org.pacos.plugin.skeleton.backend",
         entityManagerFactoryRef = "skeletonEntityManagerFactory",

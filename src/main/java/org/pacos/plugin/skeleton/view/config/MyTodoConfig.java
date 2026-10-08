@@ -7,16 +7,16 @@ import org.pacos.plugin.skeleton.view.PanelTodo;
 import org.springframework.stereotype.Component;
 
 /**
- * This class provides a configuration for the module window. Because its spring component, its ensure that this
- * implementation will be found during package scanning.
- * Based on that component, pacos will be extended about new functionality.
- * This configuration must be injected to the window implementation {@link org.pacos.plugin.skeleton.view.PanelTodo}.
+ * Registers the ToDo desktop application with PacOS.
+ *
+ * Because this class is a Spring component in the plugin configuration scan, PacOS discovers it as a
+ * {@link WindowConfig} implementation and uses it to expose the {@link PanelTodo} window.
  */
 @Component
 public class MyTodoConfig implements WindowConfig {
 
     /**
-     * Window title. Will be displayed as a label of opened modal
+     * @return title displayed in the window header
      */
     @Override
     public String title() {
@@ -24,7 +24,7 @@ public class MyTodoConfig implements WindowConfig {
     }
 
     /**
-     * Define icon resources which will be used as a module icon
+     * @return classpath-relative icon path used by the application list, dock and window header
      */
     @Override
     public String icon() {
@@ -32,7 +32,7 @@ public class MyTodoConfig implements WindowConfig {
     }
 
     /**
-     * Defines activator class which will be initialized after user demand
+     * @return prototype window class that PacOS creates when the application is activated
      */
     @Override
     public Class<? extends DesktopWindow> activatorClass() {
@@ -40,8 +40,7 @@ public class MyTodoConfig implements WindowConfig {
     }
 
     /**
-     * If is application then the module will be displayed in application drop-down menu
-     * and could be pinned to dock. If false the direct usage of this configuration will be on developer side.
+     * @return whether this window is visible in the PacOS application list and can be pinned
      */
     @Override
     public boolean isApplication() {
@@ -49,8 +48,7 @@ public class MyTodoConfig implements WindowConfig {
     }
 
     /**
-     * Defines if application could have multiple instance in one session.
-     * (For example some windows required to have more than one active instance)
+     * @return whether more than one instance may be opened in the same user session
      */
     @Override
     public boolean isAllowMultipleInstance() {
@@ -58,14 +56,11 @@ public class MyTodoConfig implements WindowConfig {
     }
 
     /**
-     * Additional restriction that tell the pacos if module is available for current session.
-     * By default, the value is true - available for all sessions.
-     * If the limitation is needed eg. because of the defined permission, then the required conditions should be
-     * implemented here.
+     * Controls whether the application is available to the current session.
+     * Use this hook for session-level restrictions; enforce action permissions separately at the action boundary.
      */
     @Override
     public boolean isAllowedForCurrentSession(UserSession userSession) {
         return true;
     }
-
 }

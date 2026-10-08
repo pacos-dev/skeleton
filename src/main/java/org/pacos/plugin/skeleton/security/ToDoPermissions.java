@@ -3,12 +3,15 @@ package org.pacos.plugin.skeleton.security;
 import org.pacos.base.security.Permission;
 
 /**
- * Permission implementation is read by core using reflection. Must be in 'org.pacos' package
+ * Example plugin permission definitions.
+ *
+ * PacOS discovers {@link Permission} implementations from the plugin context and exposes their keys and metadata
+ * to the platform security model. Permission keys should be treated as stable identifiers once deployed.
  */
 public enum ToDoPermissions implements Permission {
-    TODO_ADD("todo.add", "Add new todo item", "todo","Show 'Add new todo' button in todo plugin"),
-    TODO_REMOVE("todo.remove", "Remove todo item", "todo","Show 'remove' column in todo plugin"),
-    TODO_UPDATE("todo.update", "Update todo item", "todo","Show 'update' button in todo plugin");
+    TODO_ADD("todo.add", "Add new todo item", "todo", "Show 'Add new todo' button in todo plugin"),
+    TODO_REMOVE("todo.remove", "Remove todo item", "todo", "Show 'remove' column in todo plugin"),
+    TODO_UPDATE("todo.update", "Update todo item", "todo", "Show 'update' button in todo plugin");
 
     private final String key;
     private final String label;
