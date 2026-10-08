@@ -13,9 +13,11 @@ The skeleton is both:
 
 Run the local application from `org.pacos.plugin.skeleton.Skeleton`.
 
-The first run starts the PacOS installation flow. After installation, open:
+When running the `Skeleton.main` application, PacOS uses its default server port `8086`. After installation, open:
 
 `http://localhost:8086/desktop`
+
+For Maven Jetty execution, the skeleton configures a separate local connector on port `8099`.
 
 To change the PacOS working directory, add:
 
@@ -91,9 +93,9 @@ PacOS consumes that document when aggregating plugin API documentation.
 
 ## Run
 
-For local development, run `org.pacos.plugin.skeleton.Skeleton`.
+For local development through `Skeleton.main`, run `org.pacos.plugin.skeleton.Skeleton`.
 
-The skeleton is configured to use the Jetty Maven plugin for local execution on port `8099`.
+For Maven Jetty execution, use the configured Jetty plugin on port `8099`.
 
 HotSwap documentation:
 
