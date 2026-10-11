@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 frontend/
 src/main/bundles/prod.bundle
+package-lock.json
 
 ### IntelliJ IDEA ###
 .idea/*
