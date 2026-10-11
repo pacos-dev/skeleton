@@ -2,7 +2,18 @@
 
 This project is a reference skeleton for building Java extensions that run inside the PacOS system.
 
-The current skeleton targets **Java 21**, **Spring Boot 4.1.1**, **Vaadin 25.3.0**, and **PacOS BOM 3.4.0**. The versions should stay aligned with the PacOS release that will load the plugin.
+The skeleton uses `org.pacos:pacos-plugin-parent` to inherit the supported Java/Spring/Vaadin baseline, PacOS BOM alignment, common `provided` dependencies, test libraries and Maven plugin defaults. Use the parent version published for the PacOS release that will load the plugin. The current development branch targets **Java 21**, **Spring Boot 4.1.1**, **Vaadin 25.3.0**, and the PacOS **3.4.1-SNAPSHOT** BOM line.
+
+## Maven dependency management
+
+New plugins should start by inheriting the PacOS plugin parent. This avoids duplicating PacOS, Spring and Vaadin versions or listing every dependency supplied by the host runtime.
+
+The parent is published with the matching PacOS release. In a separate plugin repository, it must be available from the PacOS Maven repository before building:
+
+- Use the parent version matching the target PacOS runtime.
+- Keep additional plugin-owned libraries in this project's POM; these are packaged with the plugin unless deliberately declared as `provided`.
+- Do not add another PacOS BOM or Vaadin BOM import when the parent already manages them.
+- Keep plugin-specific Maven executions and metadata (such as the plugin icon and resource copying) in the plugin POM.
 
 ## Developer workflow
 
@@ -13,15 +24,17 @@ The skeleton is both:
 
 Run the local application from `org.pacos.plugin.skeleton.Skeleton`.
 
-When running the `Skeleton.main` application, PacOS uses its default server port `8086`. After installation, open:
+When running the local Spring Boot application, PacOS uses its default server port `8086`. After startup, open:
 
 `http://localhost:8086/desktop`
 
-For Maven Jetty execution, the skeleton configures a separate local connector on port `8099`.
+Start the application with Maven and set the PacOS working directory using the Spring Boot JVM arguments:
 
-To change the PacOS working directory, add:
+```bash
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DworkingDir=/opt/pacos"
+```
 
-`-DworkingDir=/path/to/dir`
+Replace `/opt/pacos` with the directory you want PacOS to use. The default working directory is `/opt/skeleton`.
 
 ## Spring configuration
 
@@ -93,9 +106,13 @@ PacOS consumes that document when aggregating plugin API documentation.
 
 ## Run
 
-For local development through `Skeleton.main`, run `org.pacos.plugin.skeleton.Skeleton`.
+For local development, run the `org.pacos.plugin.skeleton.Skeleton` application with:
 
-For Maven Jetty execution, use the configured Jetty plugin on port `8099`.
+```bash
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DworkingDir=/opt/pacos"
+```
+
+This starts the local Spring Boot environment.
 
 HotSwap documentation:
 
