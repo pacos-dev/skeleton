@@ -1,18 +1,19 @@
 package org.pacos.plugin.skeleton.view;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-import com.vaadin.flow.component.ShortcutRegistration;
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.page.Page;
-import com.vaadin.flow.internal.CurrentInstance;
-import com.vaadin.flow.server.VaadinService;
-import com.vaadin.flow.server.VaadinSession;
+import org.mockito.Mockito;
 import org.pacos.base.event.UISystem;
 import org.pacos.base.security.Permission;
-import org.pacos.base.security.PermissionConfig;
+import org.pacos.base.security.PermissionName;
 import org.pacos.base.session.UserDTO;
 import org.pacos.base.session.UserSession;
 import org.pacos.base.window.manager.ApplicationManager;
@@ -21,13 +22,13 @@ import org.pacos.base.window.manager.DownloadManager;
 import org.pacos.base.window.manager.ShortcutManager;
 import org.pacos.base.window.manager.VariableManager;
 import org.pacos.base.window.manager.WindowManager;
-import org.mockito.Mockito;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.when;
+import com.vaadin.flow.component.ShortcutRegistration;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.page.Page;
+import com.vaadin.flow.internal.CurrentInstance;
+import com.vaadin.flow.server.VaadinService;
+import com.vaadin.flow.server.VaadinSession;
 
 public class VaadinMock {
 
@@ -51,7 +52,7 @@ public class VaadinMock {
         doReturn(Mockito.mock(Page.class)).when(ui).getPage();
         var permissionConfig =
                 Arrays.stream(permissions).map(e ->
-                        new PermissionConfig(e.getKey(), "ALLOW")).collect(Collectors.toSet());
+                        new PermissionName(e.getKey())).collect(Collectors.toSet());
         VaadinMock.userSession = spy(new UserSession(userDTO,permissionConfig));
         VaadinMock.vaadinSession = spy(new VaadinSession(Mockito.mock(VaadinService.class)));
 
