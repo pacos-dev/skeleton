@@ -1,14 +1,15 @@
 package org.pacos.plugin.skeleton;
 
+import org.pacos.config.property.WorkingDir;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
+
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.spring.annotation.EnableVaadin;
 import com.vaadin.flow.theme.Theme;
-import org.pacos.config.property.WorkingDir;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * Local application entry point for running the PacOS platform with the skeleton module.
@@ -25,7 +26,13 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class Skeleton implements AppShellConfigurator {
 
     public static void main(String[] args) {
-        System.setProperty("workingDir", "/opt/skeleton");
+        String workingDir = System.getProperty("workingDir");
+
+        if (workingDir == null || workingDir.isBlank()) {
+            workingDir = "/opt/skeleton";
+            System.setProperty("workingDir", workingDir);
+        }
+
         WorkingDir.initialize();
 
         SpringApplication.run(Skeleton.class, args);
