@@ -29,30 +29,14 @@
         </license>
     </licenses>
 
-   <repositories>
+    <!-- Required to resolve pacos-plugin-parent before its repositories can be inherited. -->
+    <repositories>
         <repository>
-            <id>central</id>
-            <url>https://repo.maven.apache.org/maven2</url>
-        </repository>
-
-        <repository>
-            <id>Vaadin Directory</id>
-            <url>https://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-
-        <repository>
-            <id>mvnrepository</id>
-            <url>https://mvnrepository.com/artifact</url>
-        </repository>
-
-        <repository>
-            <id>central-maven</id>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
-
-        <repository>
-            <id>PacOS repository</id>
+            <id>pacos-maven-repo</id>
             <url>https://repo.pacos.dev/repository/pacos-maven-repo/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
