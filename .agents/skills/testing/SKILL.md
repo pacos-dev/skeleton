@@ -37,9 +37,10 @@ Use method names in the form whenCallMethodThenExpectedResult.
 
 Avoid comments inside tests. Express intent through names and assertions.
 
+For `assertThrows`, keep the executable lambda to at most one invocation that may throw. Prepare arguments and stubs before the assertion, then verify side effects afterward.
+
 ## Regression focus
 
 Test extension contracts, permission allow and deny behavior where relevant, registration, and cleanup for lifecycle-sensitive code.
 
 Run the narrowest relevant test first and report unexecuted tests honestly.
-
