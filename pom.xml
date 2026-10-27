@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.pacos</groupId>
         <artifactId>pacos-plugin-parent</artifactId>
-        <version>3.4.1</version>
+        <version>3.5.0</version>
         <relativePath/>
     </parent>
 
@@ -33,7 +33,7 @@
     <repositories>
         <repository>
             <id>pacos-maven-repo</id>
-            <url>https://repo.pacos.dev/repository/pacos-maven-repo/</url>
+            <url>https://repo.pacos.dev/repository/pacos-maven-repo</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
